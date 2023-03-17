@@ -4,11 +4,7 @@ pipeline {
         stage('Init') {
             steps {
                 sh 'terraform --version'
-                
             }
-        }
-
-        
         }
     }
 }
