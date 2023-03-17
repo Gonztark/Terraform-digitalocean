@@ -56,6 +56,7 @@ resource "null_resource" "git_clone" {
 
   provisioner "remote-exec" {
     inline = [
+      "rm -r Terraform-digitalocean/",
       "git clone https://github.com/Gonztark/Terraform-digitalocean",
       "ls"
     ]
