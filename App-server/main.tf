@@ -9,14 +9,12 @@ terraform {
 
 # Set the variable value in *.tfvars file
 # or using -var="do_token=..." CLI option
-variable "do_token" {
-  default = ""
-}
+variable "do_token" {}
 
+# Configure the DigitalOcean Provider
 provider "digitalocean" {
-  token = var.do_token != "" ? var.do_token : chomp(env("DO_API_TOKEN"))
+  token = var.do_token
 }
-
 
 resource "digitalocean_droplet" "app" {
   image  = "ubuntu-20-04-x64"

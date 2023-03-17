@@ -17,7 +17,7 @@ pipeline {
         stage('Plan') {
             steps {
                 dir('App-server') {
-                    sh 'sudo terraform plan'
+                    sh "sudo terraform plan -var 'do_token=${env.DO_API_TOKEN}'"
                 }
             }
         }
