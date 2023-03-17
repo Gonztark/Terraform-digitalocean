@@ -21,12 +21,12 @@ resource "digitalocean_droplet" "jenkins-server" {
   name   = "jenkins-server"
   region = "nyc3"
   size   = "s-1vcpu-1gb"
-  ssh_keys = ["fc:88:0d:73:94:04:69:f6:59:79:3d:59:2c:0f:c7:73"]
+  ssh_keys = ["46:0d:6d:ed:f4:21:6e:60:20:a3:a5:be:5b:12:e1:c6"]
 
     connection {
       type        = "ssh"
       user        = "root"
-      private_key = file("C:/Users/Eduar/.ssh/id_rsa")
+      private_key = file("/root/.ssh/id_rsa")
       host        = digitalocean_droplet.jenkins-server.ipv4_address
     }
 
