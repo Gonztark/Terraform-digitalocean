@@ -2,10 +2,11 @@ pipeline {
     agent any
     stages {
         stage('Init') {
-            dir('App-server') {
-                    sh 'ls'
-                }
-            
+            steps {
+                sh 'ls'
+            }
         }
+
+ 
     }
 }
