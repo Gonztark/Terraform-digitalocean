@@ -1,12 +1,19 @@
 pipeline {
     agent any
+
     stages {
-        stage('Init') {
+        stage('Checkout') {
             steps {
-                sh 'ls'
+                checkout scm
             }
         }
-
- 
+        stage('Init') {
+            steps {
+                dir('App-server') {
+                    sh 'terraform init'
+                }
+            }
+        }
+        
     }
 }
