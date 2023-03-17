@@ -40,6 +40,15 @@ resource "digitalocean_droplet" "app" {
 
     
   }
+    provisioner "remote-exec" {
+    inline = [
+      "git clone https://github.com/Gonztark/Terraform-digitalocean", 
+      "ls"
+    ]
+    trigger = {
+      always_run = true
+    }
+  }
 }
 
 
