@@ -21,5 +21,15 @@ pipeline {
                 }
             }
         }
+
+        stage('Apply') {
+            steps {
+                dir('App-server') {
+                    sh "sudo terraform apply -var 'do_token=${env.DO_API_TOKEN}'"
+                }
+            }
+        }
+
+        
     }
 }
