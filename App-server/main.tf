@@ -14,7 +14,7 @@ variable "do_token" {
 }
 
 provider "digitalocean" {
-  token = var.do_token != "" ? var.do_token : getenv("DO_API_TOKEN")
+  token = var.do_token != "" ? var.do_token : chomp(env("DO_API_TOKEN"))
 }
 
 
