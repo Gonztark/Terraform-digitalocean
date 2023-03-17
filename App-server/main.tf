@@ -23,12 +23,12 @@ resource "digitalocean_droplet" "app" {
   size   = "s-1vcpu-1gb"
   ssh_keys = ["46:0d:6d:ed:f4:21:6e:60:20:a3:a5:be:5b:12:e1:c6"]
 
-    connection {
-      type        = "ssh"
-      user        = "root"
-      private_key = file("/root/.ssh/id_rsa")
-      host        = digitalocean_droplet.app.ipv4_address
-    }
+  connection {
+    type        = "ssh"
+    user        = "root"
+    private_key = file("/root/.ssh/id_rsa")
+    host        = digitalocean_droplet.app.ipv4_address
+  }
 
   provisioner "remote-exec" {
     inline = [
@@ -37,22 +37,27 @@ resource "digitalocean_droplet" "app" {
       "sudo apt install docker-compose -y",
       "sudo apt install git -y",
     ]
-
-    
-  }
-    provisioner "remote-exec" {
-    inline = [
-      "git clone https://github.com/Gonztark/Terraform-digitalocean", 
-      "ls"
-    ]
-    trigger = {
-      always_run = true
-    }
   }
 }
 
+resource "null_resource" "git_clone" {
+  triggers = {
+    always_run = timestamp()
+  }
 
+  depends_on = [digitalocean_droplet.app]
 
+  connection {
+    type        = "ssh"
+    user        = "root"
+    private_key = file("/root/.ssh/id_rsa")
+    host        = digitalocean_droplet.app.ipv4_address
+  }
 
-
-
+  provisioner "remote-exec" {
+    inline = [
+      "git clone https://github.com/Gonztark/Terraform-digitalocean",
+      "ls"
+    ]
+  }
+}
