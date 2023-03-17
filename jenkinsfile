@@ -10,14 +10,14 @@ pipeline {
         stage('Init') {
             steps {
                 dir('App-server') {
-                    sh 'sudo -A terraform init'
+                    sh 'sudo terraform init'
                 }
             }
         }
         stage('Plan') {
             steps {
                 dir('App-server') {
-                    sh 'sudo -A terraform plan'
+                    sh 'sudo terraform plan'
                 }
             }
         }
