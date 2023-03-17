@@ -11,13 +11,17 @@ pipeline {
             steps {
                 dir('App-server') {
                     sh 'sudo terraform init'
+                    sh 'echo ${DO_API_TOKEN}'
                 }
             }
         }
         stage('Plan') {
             steps {
                 dir('App-server') {
-                    sh "DO_TOKEN_VALUE=$(echo ${DO_API_TOKEN}) && sudo terraform plan -var 'do_token=$DO_TOKEN_VALUE'"
+                    sh '''
+  DO_TOKEN_VALUE=$(echo ${DO_API_TOKEN})
+  sudo terraform plan -var "do_token=$DO_TOKEN_VALUE"
+'''
                 }
             }
         }
@@ -25,7 +29,10 @@ pipeline {
         stage('Apply') {
             steps {
                 dir('App-server') {
-                    sh "DO_TOKEN_VALUE=$(echo ${DO_API_TOKEN}) && sudo terraform apply -auto-approve -var 'do_token=$DO_TOKEN_VALUE'"
+                    sh '''
+  DO_TOKEN_VALUE=$(echo ${DO_API_TOKEN})
+  sudo terraform apply -auto-approve -var "do_token=$DO_TOKEN_VALUE"
+'''
                 }
             }
         }
