@@ -18,8 +18,9 @@ pipeline {
         stage('Plan') {
             steps {
                 dir('App-server') {
-                    sh 'sudo terraform plan -var "do_token=$(echo ${DO_API_TOKEN})"'
-                }
+                    withEnv(["DO_TOKEN=${env.DO_API_TOKEN}"]) {
+                        sh 'sudo terraform plan -var "do_token=$DO_TOKEN"'
+}                }
             }
         }
 
