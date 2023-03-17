@@ -17,10 +17,6 @@ provider "digitalocean" {
   token = var.do_token != "" ? var.do_token : getenv("DO_API_TOKEN")
 }
 
-# Configure the DigitalOcean Provider
-provider "digitalocean" {
-  token = var.do_token
-}
 
 resource "digitalocean_droplet" "app" {
   image  = "ubuntu-20-04-x64"
