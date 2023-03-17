@@ -27,7 +27,7 @@ pipeline {
             steps {
                 dir('App-server') {
                     withEnv(["DO_TOKEN=${env.DO_API_TOKEN}"]) {
-                        sh "sudo terraform plan -var='do_api_token=${env.DO_API_TOKEN}' -auto-approve"
+                        sh "sudo terraform plan -var='do_token=${env.DO_API_TOKEN}'"
 }                }
             }
         }
@@ -35,7 +35,7 @@ pipeline {
         stage('Apply') {
             steps {
                 dir('App-server') {
-                    sh "sudo terraform apply -var='do_api_token=${env.DO_API_TOKEN}' -auto-approve"
+                    sh "sudo terraform apply -var='do_token=${env.DO_API_TOKEN}' -auto-approve"
                 }
             }
         }
