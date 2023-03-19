@@ -11,8 +11,7 @@ pipeline {
         stage('Init') {
             steps {
                 dir('App-server') {
-                    sh 'sudo terraform init'
-                    
+                    sh 'sudo terraform init' 
                 }
             }
         }
