@@ -2,14 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Initialize') {
-            steps {
-                script {
-                    // Access the DO_API_TOKEN environment variable
-                    def doApiToken = env.DO_API_TOKEN
-                }
-            }
-        }
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -19,16 +12,14 @@ pipeline {
             steps {
                 dir('App-server') {
                     sh 'sudo terraform init'
-                    sh "echo ${DO_API_TOKEN}"
                 }
             }
         }
         stage('Plan') {
             steps {
                 dir('App-server') {
-                    withEnv(["DO_TOKEN=${env.DO_API_TOKEN}"]) {
                         sh "sudo terraform plan -var='do_token=${env.DO_API_TOKEN}'"
-}                }
+                }
             }
         }
 
