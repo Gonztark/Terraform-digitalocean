@@ -12,6 +12,7 @@ pipeline {
             steps {
                 dir('App-server') {
                     sh 'sudo terraform init'
+                    
                 }
             }
         }
