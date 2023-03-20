@@ -16,10 +16,10 @@ pipeline {
                 }
             }
         }
-                        stage('destroy') {
+                stage('destroy') {
             steps {
                 dir('App-server') {
-                    sh 'sudo terraform destroy' 
+                    sh 'sudo terraform destroy -var='do_token=${env.DO_API_TOKEN}' -auto-approve' 
                 }
             }
         }
