@@ -8,10 +8,18 @@ pipeline {
                 checkout scm
             }
         }
+
         stage('Init') {
             steps {
                 dir('App-server') {
                     sh 'sudo terraform init' 
+                }
+            }
+        }
+                        stage('destroy') {
+            steps {
+                dir('App-server') {
+                    sh 'sudo terraform destroy' 
                 }
             }
         }
