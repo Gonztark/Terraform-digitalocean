@@ -20,7 +20,7 @@ resource "digitalocean_droplet" "app" {
   image  = "ubuntu-20-04-x64"
   name   = "app"
   region = "nyc3"
-  size   = "s-1vcpu-1gb"
+  size   = "s-1vcpu-2gb"
   ssh_keys = ["46:0d:6d:ed:f4:21:6e:60:20:a3:a5:be:5b:12:e1:c6"]
 
   connection {
